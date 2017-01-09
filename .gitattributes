@@ -1,0 +1,6 @@
+* text=auto
+*.icns binary
+*.ico binary
+*.jar binary
+*.png binary
+*.war binary
