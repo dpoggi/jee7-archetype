@@ -1,0 +1,107 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.github.dpoggi</groupId>
+  <artifactId>jee7-archetype</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>maven-archetype</packaging>
+
+  <name>Java EE 7 Archetype</name>
+  <description>Maven archetype for Java EE 7 projects</description>
+  <url>https://github.com/dpoggi/jee7-archetype</url>
+
+  <organization>
+    <name>Dan Poggi</name>
+    <url>https://github.com/dpoggi</url>
+  </organization>
+
+  <licenses>
+    <license>
+      <name>MIT License</name>
+      <url>https://opensource.org/licenses/mit-license</url>
+    </license>
+  </licenses>
+
+  <scm>
+    <url>https://github.com/dpoggi/jee7-archetype</url>
+    <developerConnection>scm:git:git@github.com:dpoggi/jee7-archetype.git</developerConnection>
+  </scm>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  </properties>
+
+  <build>
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.archetype</groupId>
+        <artifactId>archetype-packaging</artifactId>
+        <version>3.0.1</version>
+      </extension>
+    </extensions>
+    <plugins>
+      <plugin>
+        <artifactId>maven-scm-plugin</artifactId>
+        <version>1.9.5</version>
+        <configuration>
+          <tag>v${project.version}</tag>
+          <message>Version ${project.version}</message>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-archetype-plugin</artifactId>
+        <version>3.0.1</version>
+      </plugin>
+      <plugin>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>3.0.1</version>
+        <executions>
+          <execution>
+            <id>source-jar</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>dcp</id>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.6</version>
+            <executions>
+              <execution>
+                <id>gpg-sign</id>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
+  <distributionManagement>
+    <repository>
+      <id>dcp-releases</id>
+      <name>DCP Releases</name>
+      <url>https://nexus.danpoggi.com/content/repositories/releases</url>
+    </repository>
+    <snapshotRepository>
+      <id>dcp-snapshots</id>
+      <name>DCP Snapshots</name>
+      <url>https://nexus.danpoggi.com/content/repositories/snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
+</project>
